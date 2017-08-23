@@ -1,7 +1,7 @@
 FROM node:7.10.0
 
-ADD . /node-galore
-WORKDIR /node-galore
+ADD . /node_galore
+WORKDIR /node_galore
 
 RUN npm install
 
