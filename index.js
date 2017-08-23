@@ -3,7 +3,10 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 
+const routes = require('./app/routes');
 
+
+// Events
 const eventEmitter = new events.EventEmitter();
 
 eventEmitter.on('connection', (request, response) => {
@@ -21,49 +24,8 @@ eventEmitter.on('not_found', (request, response) => {
   response.end(http.STATUS_CODES[404]);
 });
 
-const helloWorld = (request, response) => {
-  response.writeHead(200, {
-      'Content-Type': 'text/plain'
-  });
 
-  response.write('Hello World!');
-
-  response.end();
-};
-
-const loremIpsum = (request, response) => {
-  response.writeHead(200, {
-      'Content-Type': 'text/plain'
-  });
-
-  // Note that we use the 'blocking' file read so we don't return a response
-  // before file read is over.
-  const data = fs.readFileSync('lorem.txt');
-  response.write(data.toString());
-
-  response.end();
-};
-
-const arabesque = (request, response) => {
-  const filepath = path.join(__dirname, 'arabesque_1.mp3');
-  const stat = fs.statSync(filepath)
-
-  response.writeHead(200, {
-      'Content-Type': 'audio/mpeg',
-      'Content-Length': stat.size
-  });
-
-  const readstream = fs.createReadStream('arabesque_1.mp3');
-  readstream.pipe(response);
-};
-
-const routes = {
-  '/': helloWorld,
-  '/lorem': loremIpsum,
-  '/arabesque': arabesque
-};
-
-
+// Server & App
 const app = (request, response) => {
   eventEmitter.emit('connection', request, response);
 };
