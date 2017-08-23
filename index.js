@@ -1,6 +1,13 @@
+const events = require('events');
 const fs = require('fs');
 const http = require('http');
 
+
+const eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('request', (request) => {
+  console.log(request.url);
+});
 
 const helloWorld = (request, response) => {
   response.writeHead(200, {
@@ -30,7 +37,9 @@ const routes = {
   '/lorem': loremIpsum
 };
 
+
 const app = (request, response) => {
+  eventEmitter.emit('request', request);
 
   if (request.url in routes) {
     return routes[request.url](request, response);
