@@ -22,3 +22,13 @@ Development Quickstart
    ::
 
      $ docker run -p <local>:80 -v $(pwd):/node_galore --name node_galore -d node_galore
+
+
+Running The Script
+------------------
+
+Node can also be used to run scripts.
+
+::
+
+  $ docker run -v $(pwd):/node_galore node_galore node ./script.js World
