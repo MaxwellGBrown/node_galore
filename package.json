@@ -16,7 +16,5 @@
     "url": "https://github.com/MaxwellGBrown/node_galore/issues"
   },
   "homepage": "https://github.com/MaxwellGBrown/node_galore#readme",
-  "dependencies": {
-    "express": "^4.15.4"
-  }
+  "dependencies": {}
 }

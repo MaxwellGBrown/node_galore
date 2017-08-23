@@ -1,24 +1,27 @@
-const express = require('express');
-
-const app = express();
-
-const port = 80;
+const http = require('http');
 
 const helloWorld = (request, response) => {
   response.writeHead(200, {
       'Content-Type': 'text/plain'
   });
 
-  const name = request.params.name || 'World';
-  response.write('Hello ' + name + '\n');
+  response.write('Hello World!');
 
   response.end();
-}
+};
 
-app.get('/', helloWorld);
-app.get('/hello/:name', helloWorld);
+const routes = {
+  '/': helloWorld,
+};
 
+const app = (request, response) => {
 
-app.listen(port, () => {
-  console.log('Server listening on http://localhost:' + port);
-});
+  if (request.url in routes) {
+    return routes[request.url](request, response);
+  }
+
+  response.writeHead(404);
+  response.end(http.STATUS_CODES[404]);
+};
+
+http.createServer(app).listen(80);
