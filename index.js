@@ -1,6 +1,7 @@
 const events = require('events');
 const fs = require('fs');
 const http = require('http');
+const path = require('path');
 
 
 const eventEmitter = new events.EventEmitter();
@@ -43,9 +44,23 @@ const loremIpsum = (request, response) => {
   response.end();
 };
 
+const arabesque = (request, response) => {
+  const filepath = path.join(__dirname, 'arabesque_1.mp3');
+  const stat = fs.statSync(filepath)
+
+  response.writeHead(200, {
+      'Content-Type': 'audio/mpeg',
+      'Content-Length': stat.size
+  });
+
+  const readstream = fs.createReadStream('arabesque_1.mp3');
+  readstream.pipe(response);
+};
+
 const routes = {
   '/': helloWorld,
-  '/lorem': loremIpsum
+  '/lorem': loremIpsum,
+  '/arabesque': arabesque
 };
 
 
