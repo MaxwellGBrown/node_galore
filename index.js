@@ -5,8 +5,19 @@ const http = require('http');
 
 const eventEmitter = new events.EventEmitter();
 
-eventEmitter.on('request', (request) => {
-  console.log(request.url);
+eventEmitter.on('connection', (request, response) => {
+  if (request.url in routes) {
+    console.log('200 -', request.url);
+    return routes[request.url](request, response);
+  }
+
+  eventEmitter.emit('not_found', request, response);
+});
+
+eventEmitter.on('not_found', (request, response) => {
+  console.log('404 -', request.url);
+  response.writeHead(404);
+  response.end(http.STATUS_CODES[404]);
 });
 
 const helloWorld = (request, response) => {
@@ -39,14 +50,7 @@ const routes = {
 
 
 const app = (request, response) => {
-  eventEmitter.emit('request', request);
-
-  if (request.url in routes) {
-    return routes[request.url](request, response);
-  }
-
-  response.writeHead(404);
-  response.end(http.STATUS_CODES[404]);
+  eventEmitter.emit('connection', request, response);
 };
 
 http.createServer(app).listen(80);
