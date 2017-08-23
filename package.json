@@ -1,0 +1,22 @@
+{
+  "name": "node_galore",
+  "version": "0.0.0",
+  "description": "Node Galore ===========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxwellGBrown/node_galore.git"
+  },
+  "author": "Maxwell G Brown",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxwellGBrown/node_galore/issues"
+  },
+  "homepage": "https://github.com/MaxwellGBrown/node_galore#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}

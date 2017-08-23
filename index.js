@@ -1,14 +1,19 @@
-const http = require('http');
+const express = require('express');
+
+const app = express();
+
+const port = 80;
 
 const helloWorld = (request, response) => {
-  
   response.writeHead(200, {
       'Content-Type': 'text/plain'
   });
-
   response.write('Hello World\n');
-
-  response.end();  // Tells server we're done writing the response
+  response.end();
 }
 
-http.createServer(helloWorld).listen(80);
+app.get('/', helloWorld);
+
+app.listen(port, () => {
+  console.log('Server listening on http://localhost:' + port);
+});
