@@ -29,7 +29,7 @@ Node can also be used to run scripts.
 
 ::
 
-  $ docker run -v $(pwd):/node_galore node_galore node ./script.js World
+  $ docker run -v $(pwd):/node_galore node_galore node ./scripts/hello.js World
 
 
 Resources
