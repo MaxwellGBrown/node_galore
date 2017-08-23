@@ -1,4 +1,6 @@
+const fs = require('fs');
 const http = require('http');
+
 
 const helloWorld = (request, response) => {
   response.writeHead(200, {
@@ -10,8 +12,22 @@ const helloWorld = (request, response) => {
   response.end();
 };
 
+const loremIpsum = (request, response) => {
+  response.writeHead(200, {
+      'Content-Type': 'text/plain'
+  });
+
+  // Note that we use the 'blocking' file read so we don't return a response
+  // before file read is over.
+  const data = fs.readFileSync('lorem.txt');
+  response.write(data.toString());
+
+  response.end();
+};
+
 const routes = {
   '/': helloWorld,
+  '/lorem': loremIpsum
 };
 
 const app = (request, response) => {
