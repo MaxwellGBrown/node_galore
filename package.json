@@ -4,7 +4,7 @@
   "description": "Node Galore ===========",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,13 @@
     "url": "https://github.com/MaxwellGBrown/node_galore/issues"
   },
   "homepage": "https://github.com/MaxwellGBrown/node_galore#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.22.0"
+  },
+  "ava": {
+    "files": [
+      "tests/*.js" 
+    ]
+  }
 }
