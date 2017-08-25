@@ -2,4 +2,7 @@ const http = require('http');
 
 const app = require('./app');
 
-http.createServer(app).listen(80);
+
+const server = http.createServer().listen(80);
+
+server.on('request', app);
