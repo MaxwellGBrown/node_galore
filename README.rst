@@ -51,3 +51,4 @@ Resources
 
 * `StackOverflow getting started with node.js <https://stackoverflow.com/documentation/node.js/340/getting-started-with-node-js#t=201708230005090196811>`__
 * `Tutorials Point Node.js tutorial <https://www.tutorialspoint.com/nodejs>`__
+* `Anatomy of an HTTP Transaction <https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/>`__
