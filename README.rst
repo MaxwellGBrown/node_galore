@@ -1,10 +1,13 @@
 Node Galore
 ===========
 
-This is an exploration of node.js as a back end service.
+This is an exploration of node.js!
 
-I've been reluctant to begin exploring this because I *really* like Python.
-But it's probably about time I try learning more about JavaScript than just React.
+In an effort to embrace JavaScript more and to diversify away from Python I've decided that it's time I begin understanding more portions of the language.
+
+I've become comfortable with using frameworks like jQuery (ew!) & React, but I don't have the context of being familiar w/ node.
+
+
 
 Development Quickstart
 ----------------------
