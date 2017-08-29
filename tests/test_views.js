@@ -33,7 +33,6 @@ test('helloWorld calls .end()', t => {
   let response = httpMocks.createResponse();
 
   views.helloWorld(request, response);
-  const data = response._getData();
   t.is(response._isEndCalled(), true);
 });
 
@@ -78,6 +77,15 @@ test('loremIpsum Content-Type is text/plain', t => {
 });
 
 
+test('loremIpsum calls .end()', t => {
+  let request = httpMocks.createRequest();
+  let response = httpMocks.createResponse();
+
+  views.loremIpsum(request, response);
+  t.is(response._isEndCalled(), true);
+});
+
+
 test('arabesque 200 OK', t => {
   let request = httpMocks.createRequest();
   let response = httpMocks.createResponse();
@@ -105,17 +113,27 @@ test('arabesque Content-Length is same as file', t => {
 });
 
 
-test('arabesque response body is same as arabesque_1.mp3', t => {
+// TODO https://github.com/howardabrams/node-mocks-http/issues/139
+test.failing('arabesque response body is same as arabesque_1.mp3', t => {
   let request = httpMocks.createRequest();
   let response = httpMocks.createResponse();
 
   views.arabesque(request, response);
-  const arabesqueData = '';
-  /* TODO: response._getData() returns ''; how to read the pipe?
+
   const arabesqueData = fs.createReadStream(
     path.join(__dirname, '..', 'app', 'static', 'arabesque_1.mp3')
-  ).toString();
-  */
+  ).toString();  // toString()?
   const data = response._getData();
+
   t.is(data, arabesqueData);
+});
+
+
+// TODO https://github.com/howardabrams/node-mocks-http/issues/139
+test.failing('arabesque calls .end()', t => {
+  let request = httpMocks.createRequest();
+  let response = httpMocks.createResponse();
+
+  views.arabesque(request, response);
+  t.is(response._isEndCalled(), true);
 });
