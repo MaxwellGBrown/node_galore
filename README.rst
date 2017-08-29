@@ -32,6 +32,17 @@ Node can also be used to run scripts.
   $ docker run -v $(pwd):/node_galore node_galore node ./scripts/hello.js World
 
 
+Potential Features
+------------------
+
+* Demo-ing POST requests
+* Reading/writing to a data store
+   
+  * Postgres?
+
+  * Mongo?
+
+
 Resources
 ---------
 
