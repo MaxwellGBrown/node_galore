@@ -45,6 +45,8 @@ Potential Features
 
   * Mongo?
 
+* Authorization & Authentication
+
 
 Resources
 ---------
