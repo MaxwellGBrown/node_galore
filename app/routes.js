@@ -1,7 +1,9 @@
-const views = require('./views');
+const arabesque = require('./arabesque');
+const hello = require('./hello');
+const lorem = require('./lorem');
 
 module.exports = {
-  '/': views.helloWorld,
-  '/lorem': views.loremIpsum,
-  '/arabesque': views.arabesque
+  '/': hello,
+  '/lorem': lorem,
+  '/arabesque': arabesque
 };
