@@ -10,7 +10,9 @@ const common = require('./common_tests');
 const loremIpsum = require('../app/lorem');
 
 
-test([common.okResponse, common.responseEnd], loremIpsum);
+test(common.responseCode, loremIpsum, 200);
+test(common.responseMessage, loremIpsum, 'OK');
+test(common.responseEnd, loremIpsum);
 
 
 test('loremIpsum response body matches file', t => {

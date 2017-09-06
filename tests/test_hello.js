@@ -6,7 +6,9 @@ const common = require('./common_tests');
 const helloWorld = require('../app/hello');
 
 
-test([common.okResponse, common.responseEnd], helloWorld);
+test(common.responseCode, helloWorld, 200);
+test(common.responseMessage, helloWorld, 'OK');
+test(common.responseEnd, helloWorld);
 
 
 test('helloWorld "Hello World!" as body', t => {

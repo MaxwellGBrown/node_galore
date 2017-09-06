@@ -27,7 +27,7 @@ const connection = (request, response) => {
 
 const notFound = (request, response) => {
   console.log('404 -', request.url);
-  response.writeHead(404);
+  response.writeHead(404, 'Not Found');
   response.end(http.STATUS_CODES[404]);
 };
 

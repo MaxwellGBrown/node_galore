@@ -1,19 +1,15 @@
 const test = require('ava');
 
 const httpMocks = require('node-mocks-http');
+const common = require('./common_tests');
 
 const app = require('../app/app');
 const { notFound, connection } = require('../app/app')
 const routes = require('../app/routes');
 
 
-test('notFound writes 404 to response head', t => {
-  const request = httpMocks.createRequest();
-  const response = httpMocks.createResponse();
-
-  notFound(request, response);
-  t.is(response.statusCode, 404);
-});
+test(common.responseCode, notFound, 404);
+test(common.responseMessage, notFound, 'Not Found');
 
 
 test('connection does 404 if route is unrecognized', t => {

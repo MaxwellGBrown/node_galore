@@ -1,13 +1,28 @@
 const httpMocks = require('node-mocks-http');
 
-const okResponse = (t, view) => {
+const responseCode = (t, view, code) => {
   const request = httpMocks.createRequest();
   const response = httpMocks.createResponse();
 
   view(request, response);
-  t.is(response.statusCode, 200);
+  t.is(response.statusCode, code);
 };
-okResponse.title = (providedTitle, view) => `${view.name} is 200 OK`;
+responseCode.title = (providedTitle, view, code) => (
+  `${view.name} sets response.statusCode = ${code}`
+);
+
+
+const responseMessage = (t, view, message) => {
+  const request = httpMocks.createRequest();
+  const response = httpMocks.createResponse();
+
+  view(request, response);
+  t.is(response.statusMessage, message);
+};
+responseMessage.title = (providedTitle, view, message) => (
+  `${view.name} sets response.statusMessage = ${message}`
+);
+
 
 const responseEnd = (t, view) => {
   const request = httpMocks.createRequest();
@@ -18,7 +33,9 @@ const responseEnd = (t, view) => {
 };
 responseEnd.title = (providedTitle, view) => `${view.name} calls response.end()`;
 
+
 module.exports = {
-  okResponse: okResponse,
+  responseCode: responseCode,
+  responseMessage: responseMessage,
   responseEnd: responseEnd
 };

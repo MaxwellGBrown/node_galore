@@ -10,10 +10,11 @@ const common = require('./common_tests');
 const arabesque = require('../app/arabesque');
 
 
-test([common.okResponse], arabesque);
+test(common.responseCode, arabesque, 200);
+test(common.responseMessage, arabesque, 'OK');
 
 // TODO https://github.com/howardabrams/node-mocks-http/issues/139
-test.failing([common.responseEnd], arabesque);
+test.failing(common.responseEnd, arabesque);
 
 test('arabesque Content-Type is audio/mpeg', t => {
   let request = httpMocks.createRequest();
