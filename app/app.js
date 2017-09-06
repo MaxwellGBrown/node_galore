@@ -37,7 +37,6 @@ eventEmitter.on('connection', connection);
 eventEmitter.on('not_found', notFound);
 
 
-module.exports.default = app;
 module.exports = {
   connection: connection,
   notFound: notFound,
