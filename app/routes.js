@@ -3,7 +3,15 @@ const hello = require('./hello');
 const lorem = require('./lorem');
 
 module.exports = {
-  '/': hello,
-  '/lorem': lorem,
-  '/arabesque': arabesque
+  '/': {
+    'GET': hello
+  },
+
+  '/lorem': {
+    'GET': lorem
+  },
+
+  '/arabesque': {
+    'GET': arabesque
+  }
 };

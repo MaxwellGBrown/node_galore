@@ -8,12 +8,19 @@ const routes = require('./routes');
 const eventEmitter = new events.EventEmitter();
 
 eventEmitter.on('connection', (request, response) => {
-  if (request.url in routes) {
-    console.log('200 -', request.url);
-    return routes[request.url](request, response);
+  const route = routes[request.url];
+
+  if (!route) {
+    return eventEmitter.emit('not_found', request, response);
   }
 
-  eventEmitter.emit('not_found', request, response);
+  const view = route[request.method];
+
+  if (!view) {
+    return eventEmitter.emit('not_found', request, response);
+  }
+
+  view(request, response);
 });
 
 eventEmitter.on('not_found', (request, response) => {
