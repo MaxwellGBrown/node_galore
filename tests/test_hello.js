@@ -1,17 +1,12 @@
 const test = require('ava');
 
 const httpMocks = require('node-mocks-http');
+const common = require('./common_tests');
 
 const helloWorld = require('../app/hello');
 
 
-test('helloWorld 200 OK', t => {
-  let request = httpMocks.createRequest();
-  let response = httpMocks.createResponse();
-
-  helloWorld(request, response);
-  t.is(response.statusCode, 200);
-});
+test([common.okResponse, common.responseEnd], helloWorld);
 
 
 test('helloWorld "Hello World!" as body', t => {
@@ -21,15 +16,6 @@ test('helloWorld "Hello World!" as body', t => {
   helloWorld(request, response);
   const data = response._getData();
   t.is(data, "Hello World!");
-});
-
-
-test('helloWorld calls .end()', t => {
-  let request = httpMocks.createRequest();
-  let response = httpMocks.createResponse();
-
-  helloWorld(request, response);
-  t.is(response._isEndCalled(), true);
 });
 
 

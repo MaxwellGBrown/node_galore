@@ -5,18 +5,15 @@ const path = require('path');
 const url = require('url');
 
 const httpMocks = require('node-mocks-http');
+const common = require('./common_tests');
 
 const arabesque = require('../app/arabesque');
 
 
-test('arabesque 200 OK', t => {
-  let request = httpMocks.createRequest();
-  let response = httpMocks.createResponse();
+test([common.okResponse], arabesque);
 
-  arabesque(request, response);
-  t.is(response.statusCode, 200);
-});
-
+// TODO https://github.com/howardabrams/node-mocks-http/issues/139
+test.failing([common.responseEnd], arabesque);
 
 test('arabesque Content-Type is audio/mpeg', t => {
   let request = httpMocks.createRequest();
@@ -49,14 +46,4 @@ test.failing('arabesque response body is same as arabesque_1.mp3', t => {
   const data = response._getData();
 
   t.is(data, arabesqueData);
-});
-
-
-// TODO https://github.com/howardabrams/node-mocks-http/issues/139
-test.failing('arabesque calls .end()', t => {
-  let request = httpMocks.createRequest();
-  let response = httpMocks.createResponse();
-
-  arabesque(request, response);
-  t.is(response._isEndCalled(), true);
 });
